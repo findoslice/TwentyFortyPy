@@ -33,16 +33,30 @@ class TwentyFortyPy:
                     self.ChangeValue(newNode[0], newVal)
                     break
                 else:
-                    pass
+                	pass
+				
 
     def ShiftUp(self):
+        y = str(board)
         for x in self.board:
             if x[1] is not None:
-                for i in range(4):
+                for i in range(1,4):
+                    
+                    if ((x[0][0]-i, x[0][1]), x[1]) in self.board:
+                        self.ChangeValue((x[0][0] - i, x[0][1]), x[1]*2)
+                        self.ChangeValue((x[0][0] - i + 1, x[0][1]), None)
+                        break
+
                     if ((x[0][0]-i, x[0][1]), None) in self.board:
                         self.ChangeValue((x[0][0] - i, x[0][1]), x[1])
                         self.ChangeValue((x[0][0] - i + 1, x[0][1]), None)
-        self.AddRandValue()
+					
+        if y != str(self.board):
+            self.AddRandValue()
+            return True
+        else:
+            return False
+        
 
     def Prettify(self):
         x = self.board
@@ -56,7 +70,8 @@ class TwentyFortyPy:
 if __name__ == "__main__":
     board = TwentyFortyPy()
     board.Prettify()
-    for i in range(5):
+    print ("\n")
+    for i in range(20):
         board.ShiftUp()
-    print("\n")
-    board.Prettify()
+        board.Prettify()
+        print("\n")
