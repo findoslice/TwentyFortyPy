@@ -43,6 +43,11 @@ class TwentyFortyPy:
                 for i in range(1,4):
                     
                     if ((x[0][0]-i, x[0][1]), x[1]) in self.board:
+                        for j in range(x[0][0]-i, i):
+                            if ((x[0][0]-i, x[0][1]), x[1]) in self.board:
+                                pass
+                            else:
+                                break
                         self.ChangeValue((x[0][0] - i, x[0][1]), x[1]*2)
                         self.ChangeValue((x[0][0] - i + 1, x[0][1]), None)
                         break
